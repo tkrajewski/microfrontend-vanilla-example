@@ -1,14 +1,10 @@
 {
-  "name": "shell",
+  "name": "scores",
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
   "scripts": {
     "build": "webpack"
-  },
-  "dependencies": {
-    "game": "../game/dist",
-    "scores": "../scores/dist"
   },
   "devDependencies": {
     "css-loader": "^5.0.1",

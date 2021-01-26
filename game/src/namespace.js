@@ -1,0 +1,1 @@
+window.microfrontend = window.microfrontend || {};
