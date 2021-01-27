@@ -7,6 +7,6 @@ import register from './utils/register';
 import './main.css';
 
 window.onload = () => {
-  register('registerGame', storage);
-  register('registerScores', storage);  
+  register('registerGame', 'gameApp', storage);
+  register('registerScores', 'scoresApp', storage);  
 };

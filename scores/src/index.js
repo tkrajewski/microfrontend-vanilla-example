@@ -1,28 +1,23 @@
+import HTMLCounter from './components/Counter';
 import './namespace';
 import './main.css';
 
-window.microfrontend.registerScores = function(storage) {
-  const appElement = document.getElementById('scoresApp');
-
-  console.log('appElement', appElement);
+window.microfrontend.registerScores = function(containerID, storage) {
+  const appElement = document.getElementById(containerID);
 
   if (appElement) {
-    const scoresCounter = document.createElement('div');
-    scoresCounter.setAttribute('id', 'scoresCounter');
-    scoresCounter.innerHTML = `Scores: 0`;
-    appElement.appendChild(scoresCounter);
+    HTMLCounter.create(appElement, 0);
 
-    storage.subscribe(function (storageData) {
-      console.log('storageData', storageData)
-
-      const counterElement = document.getElementById('scoresCounter');
-      scoresCounter.innerHTML = `Scores ${storageData.scores}`;
+    storage.subscribe(function ({ scores }) {
+      HTMLCounter.update(scores);
     });
   }
 }
 
 window.onload = function() {
-  if (document.getElementById('rootScores')) {
-    registerScores();
-  }
+  window.microfrontend.registerScores('rootScores', {
+    subscribe: function(callbackFunction) {
+      callbackFunction({ scores: 1 });
+    }
+  });
 }

@@ -1,7 +1,9 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
  
  module.exports = {
    entry: './src/index.js',
+   mode: 'production',
    output: {
      filename: 'scores.js',
      path: path.resolve(__dirname, 'dist'),
@@ -14,4 +16,7 @@ const path = require('path');
       },
     ],
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+  ]
  };

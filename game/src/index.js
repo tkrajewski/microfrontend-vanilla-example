@@ -1,21 +1,23 @@
+import HTMLButton from './components/Button';
 import './namespace';
 import './main.css';
 
-window.microfrontend.registerGame = function(storage) {
-  const appElement = document.getElementById('gameApp');
+window.microfrontend.registerGame = function(containerID, storage) {
+  const appElement = document.getElementById(containerID);
 
   if (appElement) {
-    const actionButton = document.createElement('button');
-    actionButton.innerHTML = 'Increment Score';
-    actionButton.onclick = function() {
+    HTMLButton.create(appElement, function() {
       storage.incrementScores(1);
-    }
-    appElement.appendChild(actionButton);
+    });
   }
 }
 
 window.onload = function() {
   if (document.getElementById('rootGame')) {
-    registerGame('internal');
+    window.microfrontend.registerGame('rootGame', {
+      incrementScores: function(value) {
+        console.log('INC SCORES', value);
+      }
+    });
   }
 }
