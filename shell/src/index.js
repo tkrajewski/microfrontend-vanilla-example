@@ -1,10 +1,12 @@
-import 'game/game.js';
-import 'scores/scores.js';
+import 'game/dist/game.js';
+import 'scores/dist/scores.js';
+
+import storage from './storage';
+import register from './utils/register';
 
 import './main.css';
 
 window.onload = () => {
-  if (typeof window?.microfrontend?.registerGame === 'function') {
-    window.microfrontend.registerGame('shell app');
-  }
+  register('registerGame', storage);
+  register('registerScores', storage);  
 };
